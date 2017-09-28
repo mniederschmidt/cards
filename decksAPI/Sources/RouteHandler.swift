@@ -7,7 +7,7 @@ class RouteHandler {
     
     let persistence: DecksPersistence
     
-    init(persistence: DecksPersistence) {
+    init(_ persistence: DecksPersistence) {
         self.persistence = persistence
     }
     
@@ -24,24 +24,17 @@ class RouteHandler {
     }
     
     func handlePOST(request: HTTPRequest, response: HTTPResponse) {
-        response.setHeader(.contentType, value: "application/json")
-        
-        guard let body = request.postBodyString,
-            let attempt = try? body.jsonDecode() as? [String:Any],
-            let requestJson = attempt else {
+        // TODO: Get this to work
+        guard let bytes = request.postBodyBytes,
+            let decks = try? JSONDecoder().decode([Deck].self, from: Data(bytes: bytes)) else {
+                response.setHeader(.contentType, value: "application/json")
                 response.status = .badRequest
-                response.setBody(string: "Invalid Body. Was unable to parse the JSON")
+                try! response.setBody(json: ["failureMessage":"Invalid Body. Was unable to parse the JSON"])
                 response.completed()
                 return
         }
         
         response.status = .ok
-        
-        if let data = try? JSONEncoder().encode(persistence.readDecks()) {
-            let bytes = [UInt8](data)
-            response.appendBody(bytes: bytes)
-        }
-        
         response.completed()
     }
 }

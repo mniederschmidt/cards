@@ -38,7 +38,7 @@ extension DecksPersistence {
     @discardableResult
     fileprivate func save(_ decks: [Deck]) -> Bool {
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
+//        encoder.outputFormatting = .prettyPrinted
         print("🤠 Trying to store decks at: \(decksURL.path)")
         
         guard let data = try? encoder.encode(decks), let _ = try? data.write(to: decksURL) else {
