@@ -2,7 +2,7 @@
 decksAPI/.build/
 
 # flashCards App
-*/xcuserdata
+**/xcuserdata
 
 ## Other
 *.xccheckout
