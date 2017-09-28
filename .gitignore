@@ -3,3 +3,9 @@ decksAPI/.build/
 
 # flashCards App
 xcuserdata
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
