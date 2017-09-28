@@ -1,4 +1,4 @@
-## appVersionAPI
+## decksAPI
 * Description: An api that stores a json file with decks that hold flash cards to be written to and read from. It is written using server-side Swift.
 
 ### You Will Need
