@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class FlashCardModel {
     
@@ -19,6 +20,27 @@ class FlashCardModel {
         let newCard = Card(front: front, back: back, id: UUID())
         deck.cards.append(newCard)
         persistence.createOrUpdate([deck])
+    }
+    
+    func updateCurrentCard(withImageData imageData: Data, withSide side: FlipSide) {
+        guard deck.cards.count > 0 else { return }
+        
+        let encodedImage = imageData.base64EncodedString()
+        
+        switch side {
+        case .front:
+            deck.cards[currentCardIndex].frontImage = encodedImage
+        case .back:
+            deck.cards[currentCardIndex].backImage = encodedImage
+        }
+        persistence.createOrUpdate([deck])
+    }
+    
+    func getCurrentCardImage(withSide side: FlipSide) -> UIImage? {
+        
+        guard let imageData = getCurrentCard()?.frontImage, let dataDecode: Data = Data(base64Encoded: imageData, options:.ignoreUnknownCharacters) else { return nil }
+        
+        return UIImage(data: dataDecode)
     }
     
     func getCurrentCard() -> Card? {
