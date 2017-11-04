@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mNu-PO-49Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13526" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mNu-PO-49Y">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,7 +91,7 @@
                                         <gestureRecognizers/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHm-vb-xeb">
-                                        <rect key="frame" x="99" y="109" width="42" height="21"/>
+                                        <rect key="frame" x="99" y="-29" width="42" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -102,9 +104,9 @@
                                     <constraint firstAttribute="width" secondItem="LuR-Vg-CQh" secondAttribute="height" id="E1j-Ew-JtJ"/>
                                     <constraint firstItem="FHm-vb-xeb" firstAttribute="centerX" secondItem="LuR-Vg-CQh" secondAttribute="centerX" id="Fn1-K3-tyj"/>
                                     <constraint firstAttribute="bottom" secondItem="jge-s4-b6s" secondAttribute="bottom" id="NOc-Gd-YLt"/>
+                                    <constraint firstItem="jge-s4-b6s" firstAttribute="firstBaseline" secondItem="FHm-vb-xeb" secondAttribute="baseline" constant="12.5" symbolType="layoutAnchor" id="PpP-cw-Mob"/>
                                     <constraint firstAttribute="trailing" secondItem="jge-s4-b6s" secondAttribute="trailing" id="lom-rK-RHm"/>
                                     <constraint firstItem="jge-s4-b6s" firstAttribute="leading" secondItem="LuR-Vg-CQh" secondAttribute="leading" id="wG1-84-FkV"/>
-                                    <constraint firstItem="FHm-vb-xeb" firstAttribute="centerY" secondItem="LuR-Vg-CQh" secondAttribute="centerY" id="yxX-XT-xLW"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTT-cz-6KG">

@@ -20,9 +20,20 @@ class FlashCardViewController: UIViewController {
         super.viewDidLoad()
         deckTableView.delegate = self
         deckTableView.dataSource = self
-        flipViewTextLabel.text = model?.getCurrentCard()?.front
+        populateCardFields(withSide: .front)
+    }
+    
+    func populateCardFields(withSide side: FlipSide) -> Void {
+
+        currentVisibleSide = side
+
+        if side == .front {
+            flipViewTextLabel.text = model?.getCurrentCard()?.front
+        } else {
+            flipViewTextLabel.text = model?.getCurrentCard()?.back
+        }
         
-        guard let image = model?.getCurrentCardImage(withSide: .front) else { flipImageView.isHidden = true; return }
+        guard let image = model?.getCurrentCardImage(withSide: side) else { flipImageView.isHidden = true; return }
         flipImageView.isHidden = false
         flipImageView.image = image
     }
@@ -32,6 +43,8 @@ class FlashCardViewController: UIViewController {
 extension FlashCardViewController {
     
     @IBAction func setImage(_ sender: Any) {
+        // would use .camera instead of .photoLibrary if want to enable camera to take picture
+        // right then (like Instagram) instead of using photo library
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("can't open photo library")
             return
@@ -56,6 +69,7 @@ extension FlashCardViewController {
                 
                 self.model?.addCardToDeck(withFront: front ?? "", withBack: back ?? "")
                 self.deckTableView.reloadData()
+                self.populateCardFields(withSide: .front)
             }
         }
         
@@ -77,22 +91,12 @@ extension FlashCardViewController {
     
     @IBAction func selectPreviousCard(_ sender: UIButton) {
         model?.moveToPrevious()
-        flipViewTextLabel.text = model?.getCurrentCard()?.front
-        currentVisibleSide = FlipSide.front
-        
-        guard let image = model?.getCurrentCardImage(withSide: .front) else { flipImageView.isHidden = true; return }
-        flipImageView.isHidden = false
-        flipImageView.image = image
+        populateCardFields(withSide: .front)
     }
     
     @IBAction func selectNextCard(_ sender: UIButton) {
         model?.moveToNext()
-        flipViewTextLabel.text = model?.getCurrentCard()?.front
-        currentVisibleSide = FlipSide.front
-        
-        guard let image = model?.getCurrentCardImage(withSide: .front) else { flipImageView.isHidden = true; return }
-        flipImageView.isHidden = false
-        flipImageView.image = image
+        populateCardFields(withSide: .front)
     }
     
     @IBAction func flipItButtonPressed(_ sender: UIButton) {
@@ -105,12 +109,12 @@ extension FlashCardViewController {
         
         UIView.transition(with: flipView, duration: 0.5, options: animationOptions, animations: {
             if self.currentVisibleSide == .front {
-                self.flipViewTextLabel.text = self.model?.getCurrentCard()?.back
                 self.currentVisibleSide = .back
             } else {
-                self.flipViewTextLabel.text = self.model?.getCurrentCard()?.front
                 self.currentVisibleSide = .front
             }
+            self.populateCardFields(withSide: self.currentVisibleSide)
+
         }) { (complete) in
             
         }
@@ -136,16 +140,10 @@ extension FlashCardViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         model?.selectCard(atIndex: indexPath.row)
-        
-        flipViewTextLabel.text = model?.getCurrentCard()?.front
-        currentVisibleSide = FlipSide.front
-        
-        guard let image = model?.getCurrentCardImage(withSide: .front) else { flipImageView.isHidden = true; return }
-        flipImageView.isHidden = false
-        flipImageView.image = image
+        populateCardFields(withSide: .front)
     }
 }
-
+// MARK: - UIImagePickerControllerDelegate
 extension FlashCardViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         defer {
@@ -156,7 +154,9 @@ extension FlashCardViewController: UIImagePickerControllerDelegate, UINavigation
             return
         }
         
-        model?.updateCurrentCard(withImageData: imageData, withSide: .front)
+        model?.updateCurrentCard(withImageData: imageData, withSide: self.currentVisibleSide)
+        // Needed next line to fix bug with image initially not showing after being added
+        flipImageView.isHidden = false
         flipImageView.image = image
     }
     

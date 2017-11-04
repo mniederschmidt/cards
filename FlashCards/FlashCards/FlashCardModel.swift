@@ -20,6 +20,7 @@ class FlashCardModel {
         let newCard = Card(front: front, back: back, id: UUID())
         deck.cards.append(newCard)
         persistence.createOrUpdate([deck])
+        selectCard(atIndex: deck.cards.count - 1)
     }
     
     func updateCurrentCard(withImageData imageData: Data, withSide side: FlipSide) {
@@ -37,9 +38,22 @@ class FlashCardModel {
     }
     
     func getCurrentCardImage(withSide side: FlipSide) -> UIImage? {
-        
+        // Ask to demo in class - more elegant solution?
+        switch side {
+        case .front:
+            return getCurrentCardFrontImage()
+        case .back:
+            return getCurrentCardBackImage()
+        }
+    }
+    
+    func getCurrentCardFrontImage() -> UIImage? {
         guard let imageData = getCurrentCard()?.frontImage, let dataDecode: Data = Data(base64Encoded: imageData, options:.ignoreUnknownCharacters) else { return nil }
-        
+        return UIImage(data: dataDecode)
+    }
+    
+    func getCurrentCardBackImage() -> UIImage? {
+        guard let imageData = getCurrentCard()?.backImage, let dataDecode: Data = Data(base64Encoded: imageData, options:.ignoreUnknownCharacters) else { return nil }
         return UIImage(data: dataDecode)
     }
     
