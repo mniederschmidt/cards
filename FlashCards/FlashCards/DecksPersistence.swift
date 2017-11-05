@@ -58,7 +58,7 @@ extension DecksPersistence {
             Card(front: "Nebraska", back: "Lincoln", id: UUID()),
             Card(front: "New York", back: "Albany", id: UUID()),
             Card(front: "Missouri", back: "Jefferson City", id: UUID()),
-            Card(front: "Kansas", back: "Kansas City", id: UUID())
+            Card(front: "Kansas", back: "Topeka", id: UUID())
         ]
         let cityId = UUID(uuidString: "47A65B55-9C56-413A-BCC8-08E3BFB52BFD")!
         let cityDeck = Deck("State Capitals", cards: cityCards, id: cityId)

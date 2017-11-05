@@ -165,7 +165,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xB-ys-R4h">
                                 <rect key="frame" x="306" y="352" width="61" height="58"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="61" id="Zau-2p-5gc"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="61" id="Zau-2p-5gc"/>
                                     <constraint firstAttribute="height" constant="58" id="g5x-z7-Veg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>

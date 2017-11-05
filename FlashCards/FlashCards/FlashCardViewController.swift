@@ -43,8 +43,6 @@ class FlashCardViewController: UIViewController {
 extension FlashCardViewController {
     
     @IBAction func setImage(_ sender: Any) {
-        // would use .camera instead of .photoLibrary if want to enable camera to take picture
-        // right then (like Instagram) instead of using photo library
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("can't open photo library")
             return
@@ -150,7 +148,8 @@ extension FlashCardViewController: UIImagePickerControllerDelegate, UINavigation
             picker.dismiss(animated: true)
         }
         
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImagePNGRepresentation(image) else {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+              let imageData = UIImagePNGRepresentation(image) else {
             return
         }
         
