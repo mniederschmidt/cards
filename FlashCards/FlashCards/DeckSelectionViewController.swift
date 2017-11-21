@@ -5,12 +5,21 @@ class DeckSelectionViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var decksTableView: UITableView!
     var deckModel: DeckSelectionModel!
     let decksPersistence = DecksPersistence(decksURL: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("decks.json"))
+    var firstAppearance: Bool = true
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
         self.deckModel = DeckSelectionModel(decksPersistence, client: DeckServiceClient())
         self.deckModel.delegate = self
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.firstAppearance {
+            self.animateTable()
+            self.firstAppearance = false
+        } 
+    }
 
     func updateView() {
         DispatchQueue.main.async {
@@ -33,6 +42,27 @@ class DeckSelectionViewController: UIViewController, UITableViewDataSource, UITa
         tableView.deselectRow(at: indexPath, animated: true)
         deckModel.deckSelected(at: indexPath.row)
         performSegue(withIdentifier: "showDeck", sender: nil)
+    }
+    
+    // Animate Table View Appearing:  Loop through all cells and set each one to the very bottom,
+    //                                so it appears the list is being pulled up from the bottom of the screen,
+    //                                with a spring-like effect
+    func animateTable() {
+        self.decksTableView.reloadData()
+        
+        let cells = self.decksTableView.visibleCells
+        let tableHeight: CGFloat = self.decksTableView.bounds.size.height
+        
+        var index = 0
+        
+        for cell in cells {
+            let cell: UITableViewCell = cell as UITableViewCell
+            // render different delay for each cell; top ones come up faster
+            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: {
+                cell.transform = CGAffineTransform(translationX: 0, y: -tableHeight)
+            }, completion: nil)
+            index += 1
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

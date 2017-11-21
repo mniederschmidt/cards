@@ -12,6 +12,7 @@ class FlashCardViewController: UIViewController {
     @IBOutlet private weak var flipView: UIView!
     @IBOutlet private weak var flipViewTextLabel: UILabel!
     @IBOutlet private weak var deckTableView: UITableView!
+    @IBOutlet weak var cameraButton: UIButton!
     
     var model: FlashCardModel?
     fileprivate var currentVisibleSide = FlipSide.front
@@ -35,6 +36,7 @@ class FlashCardViewController: UIViewController {
         
         guard let image = model?.getCurrentCardImage(withSide: side) else { flipImageView.isHidden = true; return }
         flipImageView.isHidden = false
+        
         flipImageView.image = image
     }
 }
@@ -43,6 +45,14 @@ class FlashCardViewController: UIViewController {
 extension FlashCardViewController {
     
     @IBAction func setImage(_ sender: Any) {
+        
+        // Animation to make button slightly bigger when button is pressed
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
+            self.cameraButton.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        }) { (completed:Bool) in
+            self.cameraButton.transform = CGAffineTransform.identity
+        }
+        
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             print("can't open photo library")
             return
@@ -99,13 +109,16 @@ extension FlashCardViewController {
     
     @IBAction func flipItButtonPressed(_ sender: UIButton) {
         let animationOptions: UIViewAnimationOptions
-        if self.currentVisibleSide == .front {
-            animationOptions = [.curveLinear, .transitionFlipFromLeft]
-        } else {
-            animationOptions = [.curveEaseInOut, .transitionFlipFromRight]
-        }
-        
-        UIView.transition(with: flipView, duration: 0.5, options: animationOptions, animations: {
+        // Different Animations for Card Flip:  Flip from Left or Right, Curl Down, Cross Dissolve
+//        if self.currentVisibleSide == .front {
+//            animationOptions = [.curveEaseInOut, .transitionFlipFromLeft]
+//        } else {
+//            animationOptions = [.curveEaseInOut, .transitionFlipFromRight]
+//        }
+//        animationOptions = [.transitionCurlDown]
+        animationOptions = [.transitionCrossDissolve]
+
+        UIView.transition(with: flipView, duration: 1.0, options: animationOptions, animations: {
             if self.currentVisibleSide == .front {
                 self.currentVisibleSide = .back
             } else {

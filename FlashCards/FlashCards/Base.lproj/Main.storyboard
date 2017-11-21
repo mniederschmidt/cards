@@ -189,6 +189,7 @@
                             <constraint firstItem="AgY-X7-OsU" firstAttribute="centerY" secondItem="LuR-Vg-CQh" secondAttribute="centerY" id="ZuM-SX-exD"/>
                             <constraint firstItem="Nz4-yg-GtD" firstAttribute="trailing" secondItem="I0N-ii-DXs" secondAttribute="trailing" id="aFx-BM-bFF"/>
                             <constraint firstItem="fTT-cz-6KG" firstAttribute="centerX" secondItem="Nz4-yg-GtD" secondAttribute="centerX" id="bCE-fZ-ucy"/>
+                            <constraint firstItem="5xB-ys-R4h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="662-KA-cr5" secondAttribute="leading" constant="20" symbolic="YES" id="brE-Vr-swP"/>
                             <constraint firstItem="Nz4-yg-GtD" firstAttribute="bottom" secondItem="I0N-ii-DXs" secondAttribute="bottom" id="gX3-T4-p2N"/>
                             <constraint firstItem="I0N-ii-DXs" firstAttribute="top" secondItem="5xB-ys-R4h" secondAttribute="bottom" constant="8" id="geg-mB-OSa"/>
                             <constraint firstItem="LuR-Vg-CQh" firstAttribute="bottom" secondItem="Nz4-yg-GtD" secondAttribute="centerY" priority="750" id="s6e-gz-pm8"/>
@@ -206,6 +207,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraButton" destination="5xB-ys-R4h" id="Km1-oi-IYo"/>
                         <outlet property="deckTableView" destination="I0N-ii-DXs" id="4mZ-Gg-iUk"/>
                         <outlet property="flipImageView" destination="jge-s4-b6s" id="umV-30-sCo"/>
                         <outlet property="flipView" destination="LuR-Vg-CQh" id="oFa-2W-0wd"/>
