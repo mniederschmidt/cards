@@ -16,6 +16,7 @@
 		8647D12B1F6A07AC00517424 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8647D12A1F6A07AC00517424 /* FlashCardViewController.swift */; };
 		8647D12D1F6A07BD00517424 /* FlashCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8647D12C1F6A07BD00517424 /* FlashCardModel.swift */; };
 		93C6CFED1FCA4C6A00C1088F /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C6CFEC1FCA4C6A00C1088F /* UIViewX.swift */; };
+		93C6CFEF1FCA66E400C1088F /* MRF Silverplume.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93C6CFEE1FCA66E400C1088F /* MRF Silverplume.ttf */; };
 		F93A44A31F7AF63D005D5AE5 /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A44A21F7AF63D005D5AE5 /* ServiceClient.swift */; };
 		F93A44A51F7B0400005D5AE5 /* DeckServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A44A41F7B03FF005D5AE5 /* DeckServiceClient.swift */; };
 		F9CB8CCD1F7B2148001675DF /* DecksPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CB8CCC1F7B2148001675DF /* DecksPersistence.swift */; };
@@ -35,6 +36,7 @@
 		8647D12A1F6A07AC00517424 /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
 		8647D12C1F6A07BD00517424 /* FlashCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardModel.swift; sourceTree = "<group>"; };
 		93C6CFEC1FCA4C6A00C1088F /* UIViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
+		93C6CFEE1FCA66E400C1088F /* MRF Silverplume.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MRF Silverplume.ttf"; sourceTree = "<group>"; };
 		F93A44A21F7AF63D005D5AE5 /* ServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
 		F93A44A41F7B03FF005D5AE5 /* DeckServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckServiceClient.swift; sourceTree = "<group>"; };
 		F9CB8CCC1F7B2148001675DF /* DecksPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksPersistence.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				8647D1151F69F83F00517424 /* AppDelegate.swift */,
+				93C6CFEE1FCA66E400C1088F /* MRF Silverplume.ttf */,
 				8647D11C1F69F83F00517424 /* Assets.xcassets */,
 				8647D11E1F69F83F00517424 /* LaunchScreen.storyboard */,
 				8647D1211F69F83F00517424 /* Info.plist */,
@@ -158,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C6CFEF1FCA66E400C1088F /* MRF Silverplume.ttf in Resources */,
 				8647D1201F69F83F00517424 /* LaunchScreen.storyboard in Resources */,
 				8647D11D1F69F83F00517424 /* Assets.xcassets in Resources */,
 				8647D11B1F69F83F00517424 /* Main.storyboard in Resources */,
